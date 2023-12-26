@@ -28,9 +28,10 @@ function App() {
                     <button className="cart-button">Корзина</button>
                 </div>
             </header>
-            <main>
+            <main className="main-container">
                 <div>
                     <input
+                    className="search-input"
                         type="text"
                         placeholder="Найти еду"
                         onChange={(event) => {
@@ -38,7 +39,7 @@ function App() {
                         }}
                     />
                 </div>
-                <div>
+                <div className="categories-container">
                     <ul className="categories">
                         <li className="categories-item">
                             <button
@@ -74,7 +75,7 @@ function App() {
                         </li>
                     </ul>
                 </div>
-                <div>
+                <div className="food-container">
                     {filteredFood
                         .filter((food) => {
                             if (searchFood == "") {
@@ -85,7 +86,7 @@ function App() {
                         })
                         .map((food) => {
                             return (
-                                <div key={food.id}>
+                                <div className="food-item" key={food.id}>
                                     <div>
                                         <img
                                             className="pizim"
