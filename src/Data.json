@@ -1,0 +1,93 @@
+[
+    {
+        "id": 1,
+        "price": 700,
+        "title": "Пепперони",
+        "description": "А тут пепперони!",
+        "ingredients": "Моцарелла, сервелат, пепперони, пармезан, томатный соус",
+        "сategories": "Пицца",
+        "image": "src/image/1.png"
+    
+    },
+    {
+        "id": 2,
+        "price": 500,
+        "title": "Ветчина и сыр",
+        "description": "Эта пицца с сыром и ветчиной!",
+        "ingredients": "Моцарелла, ветчина, пармезан, томаты, шампиньоны, оливковое масло",
+        "сategories": "Пицца",
+        "image": "src/image/2.png"
+    },
+    {
+        "id": 3,
+        "price": 900,
+        "title": "Карбонара",
+        "description": "Это карбонара!",
+        "ingredients": "Моцарелла, бекон, пармезан, томатный соус",
+        "сategories": "Пицца",
+        "image": "src/image/3.png"
+    },
+    {
+        "id": 4,
+        "price": 500,
+        "title": "Сырная",
+        "description": "Вкусная, ароматная пицца с пикантными нотками благородных сыров. Попробуйте, и вы не останетесь равнодушными!",
+        "ingredients": "Моцарелла, пармезан, сливочный соус, сыр Дор Блю, оливковое масло",
+        "сategories": "Пицца",
+        "image": "src/image/4.png"
+    },
+    {
+        "id": 5,
+        "price": 350,
+        "title": "Кола",
+        "description": "Это кола!",
+        "ingredients": "Кола, лёд",
+        "сategories": "Напитки",
+        "image": "src/image/5.png"
+    },
+    {
+        "id": 6,
+        "price": 250,
+        "title": "Апельсиновый сок",
+        "description": "Это апельсиновый сок!",
+        "ingredients": "Апельсины, сахар, лёд",
+        "сategories": "Напитки",
+        "image": "src/image/6.png"
+    },
+    {
+        "id": 7,
+        "price": 200,
+        "title": "Вода",
+        "description": "Вода 0,2л",
+        "ingredients": "Минеральная вода",
+        "сategories": "Напитки",
+        "image": "src/image/7.png"
+    },
+    {
+        "id": 8,
+        "price": 500,
+        "title": "Брауни",
+        "description": "Шоколадное чудо",
+        "ingredients": "Яйца, масло сливочное, шоколад, соль, сахар, мука",
+        "сategories": "Десерты",
+        "image": "src/image/8.png"
+    },
+    {
+        "id": 9,
+        "price": 300,
+        "title": "Мороженое",
+        "description": "Холодное и вкусное",
+        "ingredients": "Молоко, сахар",
+        "сategories": "Десерты",
+        "image": "src/image/9.png"
+    },
+    {
+        "id": 10,
+        "price": 250,
+        "title": "Кекс",
+        "description": "Обычный кекс",
+        "ingredients": "Яйца, масло сливочное, соль, сахар, мука, сода, ванилин",
+        "сategories": "Десерты",
+        "image": "src/image/10.png"
+    }
+]
