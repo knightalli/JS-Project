@@ -234,12 +234,12 @@ function App() {
                     </div>
                 </div>
             </main>
-            <footer>
+            <footer className="footer">
                 <ul className="contact">
                     <li className="contact-item">Самая вкусная улица 0</li>
                     <li className="contact-item">Контакты: +1-23-345-6789</li>
+                    <li className="copyright">© GreenRest</li>
                 </ul>
-                <div className="copyright">© GreenRest</div>
             </footer>
         </>
     );
