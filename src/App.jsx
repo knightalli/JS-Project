@@ -1,9 +1,8 @@
 import "./App.css";
 import logo from "./image/logo.png";
 import "./index.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import data from "./Data.json";
-import { render } from "react-dom";
 
 function App() {
     const [selectedCategory, setSelectedCategory] = useState("All");
@@ -23,40 +22,37 @@ function App() {
 
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
 
+    useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    })
+
     const [total, setTotal] = useState(0);
 
-    function addCardId(id, cartFood) {
-        const goodItem = cartFood.find((good) => good.id === id);
+    function addCardId(id) {
+        const goodItem = cart.find((good) => good.id === id);
         if (goodItem) {
             plusGood(id);
         } else {
             const { id: idx, title, price } = data.find((good) => good.id === id);
-            console.log("найденный item", idx, title, price)
             setCart((prevCart) => [...prevCart, { id: idx, title, price, count: 1 }]);
-            console.log("prev", cart);
         }
-        localStorage.setItem("cart", JSON.stringify(cart));
-        console.log(cartFood);
-        render;
+        
     }
     function plusGood(id) {
         setCart(cart.map(el => el.id === id ? {...el, count: el.count +1} : el))
         
-        localStorage.setItem("cart", JSON.stringify(cart));
     }
-    function minusGood(id, cartFood) {
-        const elem = cartFood.find((el) => el.id === id);
+    function minusGood(id) {
+        const elem = cart.find((el) => el.id === id);
         if (elem.count === 1) {
-            deleteGood(id, cartFood);
+            deleteGood(id, cart);
         } else {
             setCart(cart.map(el => el.id === id ? {...el, count: el.count -1} : el))
         }
-        localStorage.setItem("cart", JSON.stringify(cart));
     }
-    function deleteGood(id, cartFood) {
+    function deleteGood(id) {
         setCart(cart.filter((el) => el.id !== id));
         console.log(cart)
-        localStorage.setItem("cart", JSON.stringify(cart));
     }
 
     return (

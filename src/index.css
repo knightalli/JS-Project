@@ -231,6 +231,11 @@ button.cart-button:hover {
     padding-top: 5px;
 }
 
+.cart-empty p {
+    margin-top: 15px;
+    font-size: 25px;
+}
+
 .footer {
     background-color: rgba(108, 172, 51, 0.826);
 
@@ -245,5 +250,5 @@ button.cart-button:hover {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    
+
 }
