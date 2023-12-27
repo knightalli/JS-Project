@@ -8,9 +8,6 @@ body {
     background-color: beige;
 }
 
-#root {
-}
-
 ul {
     list-style: none;
 }
@@ -144,9 +141,6 @@ button.cart-button:hover {
 .description-item.desc {
     font-style: italic;
     font-size: 15px;
-}
-
-.description-item.title {
 }
 
 .active {
