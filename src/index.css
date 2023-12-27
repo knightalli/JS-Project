@@ -11,6 +11,10 @@ body {
 #root {
 }
 
+ul {
+    list-style: none;
+}
+
 button {
     width: 100px;
     padding: 5px;
@@ -30,10 +34,16 @@ button:hover {
     align-items: center;
 }
 
+button.logo-btn {
+    border: none;
+    width: 217px;
+    background-color: #bdecb6;
+}
+
 button.cart-button {
     border-radius: 8px;
     border: 1px solid transparent;
-    padding: 0.6em 1.2em;
+    padding: 10px 0;
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
@@ -63,6 +73,21 @@ button.cart-button:hover {
     font-size: 20px;
     margin: 15px auto;
     border-color: #343b29;
+}
+
+.search-container {
+    margin: 0 auto;
+}
+
+.choose {
+    text-decoration: underline;
+    font-size: 12px;
+}
+
+.order-name {
+    font-size: 20px;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .categories {
@@ -128,6 +153,10 @@ button.cart-button:hover {
     background-color: green;
 }
 
+.modal-close {
+    margin-bottom: 15px;
+}
+
 .modal-cart {
     display: none;
     background: rgba(0, 0, 0, 0.8);
@@ -135,7 +164,6 @@ button.cart-button:hover {
     width: 100%;
     height: 100%;
     cursor: pointer;
-    /* указываем z-индекс для корректного наслаивания */
     z-index: 1;
     top: 0;
     left: 0;
@@ -170,6 +198,16 @@ button.cart-button:hover {
         "title title title "
         "price  . btn"
         "total count count";
+}
+
+.cart-item-pay {
+    padding: 15px;
+    border-top: 1px solid #d9d9d9;
+    background: rgba(249, 249, 249, 0.8);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 70px;
 }
 
 .cart-product-total-price {
@@ -250,5 +288,47 @@ button.cart-button:hover {
     display: flex;
     align-items: center;
     justify-content: space-around;
+}
 
+.subtotal {
+    display: flex;
+    margin: 10px 0;
+}
+
+.amount {
+    margin-left: 10px;
+}
+
+.order-title {
+    font-size: 25px;
+    font-style: bold;
+    font-weight: 500;
+    line-height: 25px;
+    margin-bottom: 25px;
+}
+
+.main-span {
+    color: #000;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: normal;
+    margin-right: 10px;
+}
+
+.no-radio {
+    border-radius: 11px;
+    background: #fff;
+
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding-left: 7px;
+    font-size: 15px;
+}
+
+.option {
+    margin-bottom: 15px;
+}
+
+.p-total-amount {
+    margin: 15px 0;
 }
