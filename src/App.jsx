@@ -23,26 +23,25 @@ function App() {
 
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
 
+    const [total, setTotal] = useState(0);
+
     function addCardId(id, cartFood) {
         const goodItem = cartFood.find((good) => good.id === id);
         if (goodItem) {
-            plusGood(id, cartFood);
+            plusGood(id);
         } else {
             const { id: idx, title, price } = data.find((good) => good.id === id);
+            console.log("найденный item", idx, title, price)
             setCart((prevCart) => [...prevCart, { id: idx, title, price, count: 1 }]);
             console.log("prev", cart);
         }
-        //setCart(cartFood);
         localStorage.setItem("cart", JSON.stringify(cart));
         console.log(cartFood);
         render;
     }
-    function plusGood(id, cartFood) {
-        const elem = cartFood.find((el) => el.id === id);
-        if (elem) {
-            elem.count++;
-        }
-        setCart(cartFood);
+    function plusGood(id) {
+        setCart(cart.map(el => el.id === id ? {...el, count: el.count +1} : el))
+        
         localStorage.setItem("cart", JSON.stringify(cart));
     }
     function minusGood(id, cartFood) {
@@ -50,20 +49,14 @@ function App() {
         if (elem.count === 1) {
             deleteGood(id, cartFood);
         } else {
-            elem.count--;
+            setCart(cart.map(el => el.id === id ? {...el, count: el.count -1} : el))
         }
-        setCart(cartFood);
         localStorage.setItem("cart", JSON.stringify(cart));
     }
     function deleteGood(id, cartFood) {
-        console.log('a', cartFood)
-        cartFood = cartFood.filter((el) => el.id !== id);
-        console.log('b', cartFood)
-        setCart(cartFood);
-        console.log('cf', cartFood)
-        console.log('c', cart)
+        setCart(cart.filter((el) => el.id !== id));
+        console.log(cart)
         localStorage.setItem("cart", JSON.stringify(cart));
-        console.log('d', cart)
     }
 
     return (
@@ -158,7 +151,7 @@ function App() {
                                         <div>
                                             <button
                                                 className="add-to-card"
-                                                onClick={() => addCardId(food.id, cart)}
+                                                onClick={() => addCardId(food.id,cart)}
                                             >
                                                 В корзину
                                             </button>
