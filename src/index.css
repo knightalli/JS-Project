@@ -11,6 +11,18 @@ body {
 #root {
 }
 
+button {
+    width: 100px;
+    padding: 5px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #072302;
+    color: white;
+}
+
 .header-container {
     display: flex;
     justify-content: space-around;
@@ -18,20 +30,20 @@ body {
     align-items: center;
 }
 
-.cart-button {
+button.cart-button {
     border-radius: 8px;
     border: 1px solid transparent;
     padding: 0.6em 1.2em;
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: #47A76A;
+    background-color: #47a76a;
     cursor: pointer;
     color: white;
 }
 
-.cart-button:hover {    
-    border: 4px solid #343B29;
+button.cart-button:hover {
+    background-color: #072302;
 }
 
 .main-container {
@@ -41,16 +53,25 @@ body {
     align-items: center;
 }
 
-
-
 .search-input {
- width: 350px;
- height: 50px;
- padding-left: 15px;
- border-radius: 15px;
- font-size: 20px;
- margin: 15px auto;
- border-color: #343B29;
+    width: 350px;
+    height: 50px;
+    padding-left: 15px;
+    border-radius: 15px;
+    font-size: 20px;
+    margin: 15px auto;
+    border-color: #343b29;
+}
+
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+.categories-item {
+    margin-right: 10px;
 }
 
 .food-container {
@@ -61,8 +82,8 @@ body {
     margin: 0 auto;
 }
 
-.food-item{
-    background-color: #62aa60;;
+.food-item {
+    background-color: #62aa60;
     margin: 30px;
     padding: 12px;
     width: 302px;
@@ -72,5 +93,64 @@ body {
     border-radius: 33px;
 }
 
+.description {
+    padding: 15px;
+    border-radius: 33px;
+    background-color: #fff9ea;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.description-item {
+    margin-bottom: 5px;
+}
 
+.description-item.price {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.description-item.desc {
+    font-style: italic;
+    font-size: 15px;
+}
+
+.description-item.title {
+}
+
+.active {
+    background-color: green;
+}
+
+.modal-cart {
+    display: none;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    /* указываем z-индекс для корректного наслаивания */
+    z-index: 1;
+    top:0;
+    left:0
+}
+
+.modal-cart.show {
+    display: block;
+}
+
+.modal-active {
+    position: absolute;
+    width: 70%;
+    height: 80%;
+    top: 25px;
+    right: 25px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    cursor: default;
+    padding: 40px 20px;
+}

@@ -18,6 +18,42 @@ function App() {
 
     const [searchFood, setSearchFood] = useState("");
 
+    const [isShow, setShow] = useState(false);
+
+    const [cart, setCart] = useState([]);
+
+    function addCardId(id, cartFood) {
+        console.log(cartFood);
+        const goodItem = cartFood.find((good) => good.id === id);
+        if (goodItem) {
+            plusGood(id);
+        } else {
+            const { id: idx, title, price } = data.find((good) => good.id === id);
+            //setCart(prevCart => [...prevCart, { id: idx, title, price, count: 1 }]);
+        }
+
+        console.log(cartFood);
+    }
+    function plusGood(id, cartFood) {
+        const elem = cartFood.find((el) => el.id === id);
+        if (elem) {
+            elem.count++;
+        }
+    }
+    function minusGood(id, cartFood) {
+        const elem = cartFood.find((el) => el.id === id);
+        if (elem.count === 1) {
+            deleteGood(id);
+        } else {
+            elem.count--;
+        }
+    }
+    function deleteGood(id, cartFood) {
+        cartFood = cartFood.filter((el) => el.id !== id);
+    }
+
+    console.log(cart + "cart");
+
     return (
         <>
             <header className="header-container">
@@ -25,13 +61,20 @@ function App() {
                     <img src={logo} width={150} height={150}></img>
                 </div>
                 <div>
-                    <button className="cart-button">Корзина</button>
+                    <button
+                        className="cart-button"
+                        onClick={() => {
+                            setShow(true);
+                        }}
+                    >
+                        Корзина
+                    </button>
                 </div>
             </header>
             <main className="main-container">
                 <div>
                     <input
-                    className="search-input"
+                        className="search-input"
                         type="text"
                         placeholder="Найти еду"
                         onChange={(event) => {
@@ -96,14 +139,101 @@ function App() {
                                             height={267}
                                         />
                                     </div>
-                                    <div>
-                                        <p>{food.title}</p>
-                                        <div>{food.price}р.</div>
-                                        <p>{food.description}</p>
+                                    <div className="description">
+                                        <p className="description-item title">{food.title}</p>
+                                        <div className="description-item price">{food.price}р.</div>
+                                        <p className="description-item desc">{food.description}</p>
+                                        <div>
+                                            <button
+                                                className="add-to-card"
+                                                onClick={() => addCardId(food.id)}
+                                            >
+                                                В корзину
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             );
                         })}
+                </div>
+                <div className={isShow ? "modal-cart show" : "modal-cart"}>
+                    <div className="modal-active">
+                        <div className="modal-close">
+                            <button
+                                className="btn-close"
+                                onClick={() => {
+                                    setShow(false);
+                                }}
+                            >
+                                X
+                            </button>
+                        </div>
+                        <div className="modal">
+                            {cart ? (
+                                <div className="cart-empty">
+                                    <p>В корзине пока пусто :(</p>
+                                </div>
+                            ) : (
+                                <div className="cart-not-empty">
+                                    <div className="cart-items">
+                                        {cart &&
+                                            cart.map((food) => (
+                                                <div className="cart-item" key={food.id}>
+                                                    <img
+                                                        className="cart-image"
+                                                        src={food.image}
+                                                        alt={food.title}
+                                                    />
+
+                                                    <h3 className="title-item">{food.title}</h3>
+                                                    <p>{food.desc}</p>
+                                                    <button
+                                                        className="del-item"
+                                                        onClick={() =>
+                                                            cart.deleteGood(food.id, cart)
+                                                        }
+                                                    >
+                                                        Удалить
+                                                    </button>
+                                                    <div className="cart-product-price">
+                                                        {food.price}р.
+                                                    </div>
+                                                    <div className="count-div">
+                                                        <button
+                                                            className="minus"
+                                                            onClick={() => minusGood(food.id, cart)}
+                                                        >
+                                                            -
+                                                        </button>
+                                                        <div className="count">{food.count}</div>
+                                                        <button
+                                                            className="plus"
+                                                            onClick={() => plusGood(food.id, cart)}
+                                                        >
+                                                            +
+                                                        </button>
+                                                    </div>
+                                                    <div className="cart-product-total-price">
+                                                        {food.price * food.count}р.
+                                                    </div>
+                                                </div>
+                                            ))}
+                                    </div>
+                                    <div className="cart-summary">
+                                        <div className="subtotal">
+                                            <div className="span-total">Сумма заказа:</div>
+                                            <div className="amount">{}р.</div>
+                                        </div>
+                                        <div className="payment">
+                                            <button className="payment-btn">
+                                                К оформлению заказа
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
                 </div>
             </main>
             <footer>
