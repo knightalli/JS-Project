@@ -3,6 +3,7 @@ import logo from "./image/logo.png";
 import "./index.css";
 import { useState } from "react";
 import data from "./Data.json";
+import { render } from "react-dom";
 
 function App() {
     const [selectedCategory, setSelectedCategory] = useState("All");
@@ -20,25 +21,29 @@ function App() {
 
     const [isShow, setShow] = useState(false);
 
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
 
     function addCardId(id, cartFood) {
-        console.log(cartFood);
         const goodItem = cartFood.find((good) => good.id === id);
         if (goodItem) {
             plusGood(id, cartFood);
         } else {
             const { id: idx, title, price } = data.find((good) => good.id === id);
-            setCart(prevCart => [...prevCart, { id: idx, title, price, count: 1 }]);
+            setCart((prevCart) => [...prevCart, { id: idx, title, price, count: 1 }]);
+            console.log("prev", cart);
         }
-
+        //setCart(cartFood);
+        localStorage.setItem("cart", JSON.stringify(cart));
         console.log(cartFood);
+        render;
     }
     function plusGood(id, cartFood) {
         const elem = cartFood.find((el) => el.id === id);
         if (elem) {
             elem.count++;
         }
+        setCart(cartFood);
+        localStorage.setItem("cart", JSON.stringify(cart));
     }
     function minusGood(id, cartFood) {
         const elem = cartFood.find((el) => el.id === id);
@@ -47,12 +52,19 @@ function App() {
         } else {
             elem.count--;
         }
+        setCart(cartFood);
+        localStorage.setItem("cart", JSON.stringify(cart));
     }
     function deleteGood(id, cartFood) {
+        console.log('a', cartFood)
         cartFood = cartFood.filter((el) => el.id !== id);
+        console.log('b', cartFood)
+        setCart(cartFood);
+        console.log('cf', cartFood)
+        console.log('c', cart)
+        localStorage.setItem("cart", JSON.stringify(cart));
+        console.log('d', cart)
     }
-
-    console.log(cart + "cart");
 
     return (
         <>
@@ -169,7 +181,7 @@ function App() {
                             </button>
                         </div>
                         <div className="modal">
-                            {cart ? (
+                            {!cart.length ? (
                                 <div className="cart-empty">
                                     <p>В корзине пока пусто :(</p>
                                 </div>
@@ -178,20 +190,13 @@ function App() {
                                     <div className="cart-items">
                                         {cart &&
                                             cart.map((food) => (
-                                                <div className="cart-item" key={food.id}>
-                                                    <img
-                                                        className="cart-image"
-                                                        src={food.image}
-                                                        alt={food.title}
-                                                    />
+                                                <div className="cart-item" key={food.id}>                                                    
 
                                                     <h3 className="title-item">{food.title}</h3>
                                                     <p>{food.desc}</p>
                                                     <button
                                                         className="del-item"
-                                                        onClick={() =>
-                                                            cart.deleteGood(food.id, cart)
-                                                        }
+                                                        onClick={() => deleteGood(food.id, cart)}
                                                     >
                                                         Удалить
                                                     </button>
