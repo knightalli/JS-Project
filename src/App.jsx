@@ -26,10 +26,10 @@ function App() {
         console.log(cartFood);
         const goodItem = cartFood.find((good) => good.id === id);
         if (goodItem) {
-            plusGood(id);
+            plusGood(id, cartFood);
         } else {
             const { id: idx, title, price } = data.find((good) => good.id === id);
-            //setCart(prevCart => [...prevCart, { id: idx, title, price, count: 1 }]);
+            setCart(prevCart => [...prevCart, { id: idx, title, price, count: 1 }]);
         }
 
         console.log(cartFood);
@@ -43,7 +43,7 @@ function App() {
     function minusGood(id, cartFood) {
         const elem = cartFood.find((el) => el.id === id);
         if (elem.count === 1) {
-            deleteGood(id);
+            deleteGood(id, cartFood);
         } else {
             elem.count--;
         }
@@ -146,7 +146,7 @@ function App() {
                                         <div>
                                             <button
                                                 className="add-to-card"
-                                                onClick={() => addCardId(food.id)}
+                                                onClick={() => addCardId(food.id, cart)}
                                             >
                                                 В корзину
                                             </button>
